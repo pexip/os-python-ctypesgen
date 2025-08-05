@@ -1,5 +1,5 @@
 Source: python-ctypesgen
-Section: unknown
+Section: python
 Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
 Rules-Requires-Root: no
@@ -8,8 +8,12 @@ Build-Depends:
  dh-sequence-python3,
  python3-setuptools,
  python3-all,
+ python3-setuptools,
+ python3-setuptools-scm,
+ python3-toml,
+ python3-wheel
 Standards-Version: 4.6.2
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://pypi.org/project/ctypesgen/
 Vcs-Browser: https://github.com/pexip/os-python-ctypesgen
 Vcs-Git: https://github.com/pexip/os-python-ctypesgen.git
 
@@ -18,10 +22,16 @@ Architecture: all
 Depends:
  ${python3:Depends},
  ${misc:Depends},
-Suggests:
- python-python-ctypesgen-doc,
-Description: <insert up to 60 chars description> (Python 3)
- <Insert long description, indented with spaces.>
+Description: Pure-python ctypes wrapper generator (Python 3)
+ ctypesgen is a pure-python ctypes wrapper generator. It parses C header files
+ and creates a wrapper for libraries based on what it finds.
+ .
+ Preprocessor macros are handled in a manner consistent with typical C code.
+ Preprocessor macro functions are translated into Python functions that are then
+ made available to the user of the newly-generated Python wrapper library.
+ .
+ It can also output JSON, which can be used with Mork, which generates bindings
+ for Lua, using the alien module (which binds libffi to Lua).
  .
  This package installs the library for Python 3.
 
