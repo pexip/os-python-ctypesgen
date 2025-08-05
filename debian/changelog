@@ -1,3 +1,9 @@
+python-ctypesgen (1.1.1-0+pexip25u1) pexip-trixie; urgency=medium
+
+  * Rebuild for Trixie.
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Tue, 05 Aug 2025 12:26:00 +0000
+
 python-ctypesgen (1.1.1-0+pexip24u1) pexip; urgency=medium
 
   * Prepare Pexip Packaging
