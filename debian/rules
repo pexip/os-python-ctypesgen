@@ -4,20 +4,13 @@
 # Output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
 
-export PYBUILD_NAME=python-ctypesgen
+export PYBUILD_NAME=ctypesgen
+export SETUPTOOLS_SCM_PRETEND_VERSION=$(shell sed -n 's/^Version: //p' PKG-INFO)
 
 %:
 	dh $@ --buildsystem=pybuild
 
-
-# If you need to rebuild the Sphinx documentation:
-# Add sphinxdoc to the dh --with line.
-#
-# And uncomment the following lines.
-#execute_after_dh_auto_build-indep: export http_proxy=127.0.0.1:9
-#execute_after_dh_auto_build-indep: export https_proxy=127.0.0.1:9
-#execute_after_dh_auto_build-indep:
-#	PYTHONPATH=. python3 -m sphinx -N -bhtml \
-#	docs/ build/html # HTML generator
-#	PYTHONPATH=. python3 -m sphinx -N -bman \
-#	docs/ build/man # Manpage generator
+override_dh_auto_test:
+	# Work around broken upstream
+	cp run.py .pybuild/cpython3_3.11_ctypesgen/build/
+	dh_auto_test
